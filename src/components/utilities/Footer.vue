@@ -1,8 +1,6 @@
 <script>
 // IMPORTS
 
-
-
 // /IMPORTS
 
 export default {
@@ -24,8 +22,5 @@ export default {
 
 <style lang="scss" scoped>
 // USES
-
-
-
-// /USES
+@use '../assets/scss/partials/variables' as *;
 </style>

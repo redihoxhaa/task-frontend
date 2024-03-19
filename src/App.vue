@@ -1,13 +1,22 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { store } from "./store";
 
 export default {
-  components: { HelloWorld }
-}
+  components: {},
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+  },
+  mounted() {
+  }
+};
 </script>
 
 <template>
-  <HelloWorld />
+  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped></style>
