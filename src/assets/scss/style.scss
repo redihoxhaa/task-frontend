@@ -4,3 +4,8 @@
 @use '../scss/partials/utilities' as *;
 @use '../scss/partials/components' as *;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+body {
+    font-family: "Poppins";
+}

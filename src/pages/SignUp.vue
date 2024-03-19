@@ -29,14 +29,16 @@ export default {
 
             </div>
             <div class="login-form text-center d-flex flex-column">
-                <h5 class="text-uppercase">Log In</h5>
+                <h5 class="text-uppercase">Sign Up</h5>
+                <input type="text" class="input mb-3" placeholder="Username">
                 <input type="email" class="input mb-3" placeholder="Email">
                 <input type="password" class="input mb-3" placeholder="Password">
-                <Button buttonText="Log In" buttonClass="text-uppercase mt-4" />
+                <input type="password" class="input mb-3" placeholder="Confirm Password">
+                <Button buttonText="Sign Up" buttonClass="text-uppercase mt-4" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
-                <div class="mb-3">Don't have an account yet?</div>
-                <ButtonOutline buttonText="Sign Up" buttonClass="text-uppercase" buttonRedirect="sign-up" />
+                <div class="mb-3">Already have an account?</div>
+                <ButtonOutline buttonText="Log in" buttonClass="text-uppercase" buttonRedirect="login" />
             </div>
         </div>
     </div>

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "./pages/Login.vue";
-import Register from "./pages/Register.vue";
+import SignUp from "./pages/SignUp.vue";
 import Home from "./pages/Home.vue";
+import axios from 'axios';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,15 +13,49 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: '/register',
-      name: 'register',
-      component: Register,
+      path: '/sing-up',
+      name: 'sign-up',
+      component: SignUp,
     },
     {
       path: "/home",
       name: "home",
       component: Home,
+      meta: { requiresAuth: true } // Specifica che questa rotta richiede autenticazione
     }
   ],
 });
+
+// Guarda di navigazione per autenticare l'utente e permettere l'accesso ad alcune rotte
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    checkAuthentication()
+      .then(isAuthenticated => {
+        if (isAuthenticated) {
+          next();
+        } else {
+          next({ name: 'login' });
+        }
+      })
+      .catch(error => {
+        console.error('Errore durante la verifica dell\'autenticazione:', error);
+        next({ name: 'login' });
+      });
+  } else {
+    next();
+  }
+});
+
+// Funzione per verificare l'autenticazione dell'utente
+function checkAuthentication() {
+  return axios.get('/api/user')
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Errore durante la verifica dell\'autenticazione:', error);
+      return false;
+    });
+}
+
 export { router };
