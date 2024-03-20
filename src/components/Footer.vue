@@ -33,7 +33,7 @@ export default {
 
     <!-- Collegamento categorie -->
     <router-link class="" :to="{ name: 'categories' }">
-      <i class=" fa-solid fa-list"></i>
+      <i class=" fa-solid fa-grip"></i>
     </router-link>
   </footer>
 
@@ -47,7 +47,7 @@ export default {
 
       <!-- Collegamento categorie -->
       <router-link class="" :to="{ name: 'categories' }">
-        <i class=" fa-solid left-icon fa-list categories-btn"></i>
+        <i class=" fa-solid left-icon fa-grip categories-btn"></i>
       </router-link>
 
       <!-- Collegamento aggiungi task -->

@@ -19,6 +19,7 @@ export default {
             name: null,
             bg_color_hex: null,
             text_color_hex: null,
+            formSubmitted: false
         }
     },
     methods: {
@@ -30,7 +31,25 @@ export default {
             });
         },
 
-        createCategory() {
+        validateForm() {
+            let isValid = true;
+
+            if (!this.name) {
+                isValid = false;
+            }
+
+            return isValid;
+        },
+
+        submitForm() {
+            this.formSubmitted = true;
+
+            if (!this.validateForm()) {
+                return; // Exit if form is not valid
+            }
+
+
+
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             const newCategory = {
                 name: this.name,
@@ -78,6 +97,7 @@ export default {
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Category name *</label>
+                        <span v-if="formSubmitted && !name" class="error">Name is required</span>
                     </div>
                     <div class="row jusitfy-content-center g-4 mt-5 mb-5">
                         <div class="col-12 col-md-6 d-flex justify-content-center">
@@ -133,7 +153,7 @@ export default {
 
 
                     <div class="save-btn mt-5 pb-3 text-end">
-                        <Button buttonText="Save" class="edit-btn" @click="createCategory" />
+                        <Button buttonText="Save" class="edit-btn" @click="submitForm" />
                     </div>
                 </div>
             </div>
@@ -197,6 +217,12 @@ export default {
                     border-color: $our-border-hover-grey;
                 }
 
+            }
+
+            .error {
+                color: red;
+                font-size: 12px;
+                margin-top: 5px;
             }
         }
 
