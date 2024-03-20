@@ -20,7 +20,7 @@ export default {
   <header class="d-flex justify-content-between align-items-center px-4">
     <div class="container d-flex justify-content-between align-items-center">
       <router-link class="logo" :to="{ name: 'home' }">.tASK</router-link>
-      <div class="username">{{ this.store.userInfo.name }}</div>
+      <div class="username">{{ this.store.userInfo.name.split(" ")[0] }}</div>
     </div>
   </header>
 </template>
