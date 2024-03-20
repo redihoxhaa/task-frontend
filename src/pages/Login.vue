@@ -12,7 +12,8 @@ export default {
         return {
             store,
             email: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
     },
     methods: {
@@ -27,18 +28,22 @@ export default {
                 })
                 .catch(error => {
                     console.error(error);
-                    // Gestione degli errori
+                    if (error.response && error.response.status === 401) {
+                        this.errorMessage = "Invalid email or password";
+                    } else {
+                        this.errorMessage = "An error occurred. Please try again later.";
+                    }
                 });
         },
         scrollToTop() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Imposta lo scrolling fluido
+                behavior: 'smooth'
             });
         }
     },
     mounted() {
-        this.scrollToTop()
+        this.scrollToTop();
     },
 }
 </script>
@@ -50,7 +55,6 @@ export default {
                 <h1>Welcome to</h1>
                 <div class="giant-font">.tASK</div>
                 <h5 class="slogan text-uppercase">Unveil Your Productivity Secrets</h5>
-
             </div>
             <div class="login-form text-center d-flex flex-column">
                 <div class="input-group">
@@ -61,6 +65,7 @@ export default {
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" class="input mb-3" placeholder="Password" v-model="password">
                 </div>
+                <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
                 <Button buttonText="Log In" buttonClass="text-uppercase mt-4" @click="loginUser" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
@@ -130,6 +135,12 @@ export default {
             }
 
 
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 12px;
         }
     }
 }

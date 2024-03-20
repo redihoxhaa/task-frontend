@@ -14,34 +14,46 @@ export default {
             username: '',
             email: '',
             password: '',
+            errorMessage: ''
         }
     },
     methods: {
         registerUser() {
+            // Controllo se tutti i campi sono compilati
+            if (!this.username || !this.email || !this.password) {
+                this.errorMessage = "Please fill in all fields.";
+                return; // Interrompi l'esecuzione del metodo se un campo non è compilato
+            }
+
             axios.post(this.store.serverAPI + this.store.signupURI, {
                 name: this.username,
                 email: this.email,
                 password: this.password
             })
                 .then(response => {
-
                     this.store.accessToken = response.data.token;
                     this.$router.push('/home');
                 })
                 .catch(error => {
                     console.error(error);
                     // Gestione degli errori
+                    if (error.response && error.response.status === 401 && error.response.data.message) {
+                        this.errorMessage = "Email is already in use. Please use a different email.";
+                    } else {
+                        this.errorMessage = "An error occurred. Please try again later.";
+                    }
                 });
         },
         scrollToTop() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Imposta lo scrolling fluido
+                behavior: 'smooth'
             });
         }
-
     },
-    mounted() { this.scrollToTop() },
+    mounted() {
+        this.scrollToTop();
+    },
 }
 </script>
 
@@ -52,22 +64,22 @@ export default {
                 <h1>Welcome to</h1>
                 <div class="giant-font">.tASK</div>
                 <h5 class="slogan text-uppercase">Unveil Your Productivity Secrets</h5>
-
             </div>
             <div class="sign-up-form text-center d-flex flex-column">
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" class="input mb-3" placeholder="Username" v-model="username">
+                    <input type="text" class="input mb-3" placeholder="Username *" v-model="username">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" class="input mb-3" placeholder="Email" v-model="email">
+                    <input type="email" class="input mb-3" placeholder="Email *" v-model="email">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" class="input mb-3" placeholder="Password" v-model="password">
+                    <input type="password" class="input mb-3" placeholder="Password *" v-model="password">
                 </div>
-
+                <!-- Aggiunta del messaggio di errore -->
+                <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
                 <Button buttonText="Sign Up" buttonClass="text-uppercase mt-4" @click="registerUser" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
@@ -130,6 +142,12 @@ export default {
                 }
 
             }
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 12px;
         }
     }
 }
