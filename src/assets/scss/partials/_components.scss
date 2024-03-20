@@ -95,3 +95,11 @@ label {
 .inputV2:focus~.bar:after {
     width: 50%;
 }
+
+// Inner card
+
+.inner-card {
+    border-radius: 10px;
+    background: rgb(235, 235, 235);
+    box-shadow: rgba(81, 81, 121, 0.15) 0px 30px 50px -45px inset, rgba(44, 44, 44, 0.2) 0px 18px 26px -18px inset;
+}

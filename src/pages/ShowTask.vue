@@ -14,7 +14,7 @@ export default {
                 "id": 2,
                 "user_id": 1,
                 "category_id": 3,
-                "title": "Task di Mirko",
+                "title": "Pagare la palestra di Karate fino a domani",
                 "description": "Completare la relazione di progetto",
                 "due_date": "Thu Mar 21 2024 02:01:00 GMT+0100 (Ora standard dell\’Europa centrale)",
                 "status": 1,
@@ -66,14 +66,14 @@ export default {
     <div class="wrapper">
         <Header />
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
-            <div class="task-card d-flex flex-column py-4 px-5">
+            <div class="task-card d-flex flex-column py-4 px-4">
                 <h2 class="pb-4">your .tASK</h2>
                 <div class="info d-flex flex-column">
-                    <div class="create-date text-end pb-2">created: {{ formattedCreateDate(task.created_at) }}</div>
-                    <h4 class="task-title">{{ task.title }}</h4>
-                    <p class="task-description p-0 m-0">{{ task.description }}</p>
-                    <div class="category">{{ task.category.name }}</div>
-                    <div class="due-date">{{ formattedDueDate(task.due_date) }}</div>
+                    <div class="create-date text-end pb-4">created: {{ formattedCreateDate(task.created_at) }}</div>
+                    <h4 class="task-title pb-2">{{ task.title }}</h4>
+                    <p class="inner-card task-description p-3 mb-5">{{ task.description }}</p>
+                    <div class="category pb-4"><span class="label">Category:</span> {{ task.category.name }}</div>
+                    <div class="due-date text-end">due date: {{ formattedDueDate(task.due_date) }}</div>
 
                 </div>
             </div>
@@ -117,9 +117,30 @@ export default {
 
                 color: $our-black;
 
-                .create-date {
+                .create-date,
+                .due-date {
                     color: $our-light-grey;
                     font-size: 10px;
+                }
+
+                .task-title {
+                    font-size: 20px;
+                }
+
+                .task-description {
+                    font-size: 12px;
+                }
+
+                .category {
+                    font-size: 14px;
+
+
+                    .label {
+                        font-size: 14px;
+                        color: $our-orange;
+                        font-weight: 700;
+                        letter-spacing: -1px;
+                    }
                 }
             }
 

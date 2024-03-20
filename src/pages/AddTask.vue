@@ -26,7 +26,7 @@ export default {
     <div class="wrapper">
         <Header />
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
-            <div class="add-card d-flex flex-column py-4 px-5">
+            <div class="add-card d-flex flex-column py-4 px-4">
                 <h2 class="pb-4">new .tASK</h2>
                 <div class="group pb-4">
                     <input type="text" class="inputV2">
@@ -40,6 +40,7 @@ export default {
                     <span class="bar"></span>
                     <label class>Description</label>
                 </div>
+
                 <div class="row">
 
                     <div class="custom-group col-12 mt-3">
