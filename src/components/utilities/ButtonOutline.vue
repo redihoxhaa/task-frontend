@@ -42,14 +42,13 @@ export default {
 }
 
 .outline {
-    border: 1px solid $our-orange;
-    background-color: #00000000;
+    border: 2px solid $our-orange;
+    color: $our-orange;
+    font-weight: 600;
+    transition: all 0.2s ease-in;
 
     &:hover {
-        transition: all 0.2s ease-in-out;
-        background-color: $our-orange-hover;
-        border: 1px solid $our-orange-hover;
-        color: $our-white;
+        transform: scale(1.03);
     }
 }
 

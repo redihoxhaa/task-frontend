@@ -39,6 +39,8 @@ export default {
     text-decoration: none;
     color: $our-white;
     font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease-in;
 }
 
 .default {

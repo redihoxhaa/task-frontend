@@ -3,9 +3,6 @@
 import Button from '../components/utilities/Button.vue';
 import ButtonOutline from '../components/utilities/ButtonOutline.vue';
 
-
-// /IMPORTS
-
 export default {
     props: [],
     components: { Button, ButtonOutline },
@@ -28,12 +25,23 @@ export default {
                 <h5 class="slogan text-uppercase">Unveil Your Productivity Secrets</h5>
 
             </div>
-            <div class="login-form text-center d-flex flex-column">
-                <h5 class="text-uppercase">Sign Up</h5>
-                <input type="text" class="input mb-3" placeholder="Username">
-                <input type="email" class="input mb-3" placeholder="Email">
-                <input type="password" class="input mb-3" placeholder="Password">
-                <input type="password" class="input mb-3" placeholder="Confirm Password">
+            <div class="sign-up-form text-center d-flex flex-column">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" class="input mb-3" placeholder="Username">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" class="input mb-3" placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" class="input mb-3" placeholder="Password">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" class="input mb-3" placeholder="Password">
+                </div>
                 <Button buttonText="Sign Up" buttonClass="text-uppercase mt-4" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
@@ -49,12 +57,12 @@ export default {
 @use '../assets/scss/partials/variables' as *;
 
 .wrapper {
-    background-color: $our-blue;
+    background-color: $our-white;
     width: 100vw;
     height: 100vh;
 
     .container {
-        color: $our-white;
+        color: $our-black;
 
 
         .top-part {
@@ -66,7 +74,8 @@ export default {
 
             .giant-font {
                 font-size: 90px;
-                font-weight: 600;
+                font-weight: 700;
+                letter-spacing: -3px;
                 color: $our-orange;
             }
 
@@ -80,10 +89,20 @@ export default {
 
         }
 
-        .login-form {
-            h5 {
-                letter-spacing: 2px;
-                font-size: 14px;
+        .sign-up-form {
+
+            .input-group {
+
+                position: relative;
+
+                i {
+                    position: absolute;
+                    bottom: 52%;
+                    font-size: 12px;
+                    left: 10px;
+                    filter: opacity(0.6);
+                }
+
             }
         }
     }

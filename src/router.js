@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "./pages/Login.vue";
 import SignUp from "./pages/SignUp.vue";
 import Home from "./pages/Home.vue";
+import AddTask from "./pages/AddTask.vue";
 import axios from 'axios';
 
 const router = createRouter({
@@ -21,6 +22,12 @@ const router = createRouter({
       path: "/home",
       name: "home",
       component: Home,
+      meta: { requiresAuth: true } // Specifica che questa rotta richiede autenticazione
+    },
+    {
+      path: "/add-task",
+      name: "add-task",
+      component: AddTask,
       meta: { requiresAuth: true } // Specifica che questa rotta richiede autenticazione
     }
   ],

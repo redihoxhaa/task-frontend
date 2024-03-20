@@ -1,11 +1,10 @@
 <script>
 // IMPORTS
-
-// /IMPORTS
+import Button from './utilities/Button.vue';
 
 export default {
   props: [],
-  components: {},
+  components: { Button },
   data() {
     return {
 
@@ -17,9 +16,12 @@ export default {
 </script>
 
 <template>
-  <footer class="d-flex justify-content-between container align-items-center">
-    <div class="logo">tASK.</div>
-    <div class="username">Username</div>
+  <footer class="d-flex justify-content-between align-items-center px-5">
+    <i class="fa-solid fa-house"></i>
+    <router-link class="add-btn" :to="{ name: 'add-task' }">
+      <i class="fa-solid fa-plus"></i>
+    </router-link>
+    <i class="fa-solid fa-list"></i>
   </footer>
 </template>
 
@@ -28,21 +30,37 @@ export default {
 @use '../assets/scss/partials/variables' as *;
 
 footer {
+
   height: 60px;
-  background-color: red;
+  box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
+  background-color: $our-white;
+
   position: fixed;
+  z-index: 999;
   bottom: 0;
   left: 0;
   right: 0;
 
-  .logo {
-    font-size: 30px;
-    color: $our-orange;
-    font-weight: 600;
-  }
-}
+  .add-btn {
 
-span {
-  color: $our-white;
+    background-color: $our-orange;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
+
+    i {
+      font-size: 32px;
+      color: $our-white;
+      padding: 20px 30px;
+
+    }
+  }
+
+  i {
+    color: $our-black;
+    font-size: 24px;
+  }
+
+
 }
 </style>

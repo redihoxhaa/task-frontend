@@ -3,19 +3,95 @@
 
 .input {
     border: 2px solid transparent;
-    width: 15em;
+    box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
+    width: 20em;
+    font-size: 14px;
     height: 2.5em;
-    padding-left: 0.8em;
+    padding-left: 33px;
     outline: none;
     overflow: hidden;
     background-color: $our-white;
-    border-radius: 6px;
-    transition: all 0.5s;
+    border-radius: 6px !important;
+    transition: all 0.2s ease-in;
 }
 
 .input:hover,
 .input:focus {
     border: 1px solid #f96c007c;
-    box-shadow: 0px 0px 20px $our-orange;
+    box-shadow: 0px 0px 20px rgba($color: $our-orange, $alpha: 0.5);
     background-color: $our-white;
+}
+
+
+// Input V2
+.group {
+    position: relative;
+}
+
+.inputV2 {
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+
+    border: none;
+    border-bottom: 1px solid #515151;
+    background: transparent;
+    width: 100%;
+}
+
+.inputV2:focus {
+    outline: none;
+}
+
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.inputV2:focus~label,
+.inputV2:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: $our-orange;
+}
+
+.bar {
+    position: relative;
+    display: block;
+
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: $our-orange;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.inputV2:focus~.bar:before,
+.inputV2:focus~.bar:after {
+    width: 50%;
 }

@@ -8,7 +8,7 @@ export default {
   components: {},
   data() {
     return {
-
+      user: 'User'
     }
   },
   methods: {},
@@ -17,9 +17,9 @@ export default {
 </script>
 
 <template>
-  <header class="d-flex justify-content-between container align-items-center">
-    <div class="logo">tASK.</div>
-    <div class="username">Username</div>
+  <header class="d-flex justify-content-between align-items-center px-4">
+    <div class="logo">.tASK</div>
+    <div class="username">{{ user }}</div>
   </header>
 </template>
 
@@ -29,8 +29,11 @@ export default {
 
 header {
   height: 60px;
-  background-color: red;
+  box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
+
   position: fixed;
+  z-index: 999;
+  background-color: $our-white;
   top: 0;
   left: 0;
   right: 0;
@@ -38,11 +41,12 @@ header {
   .logo {
     font-size: 30px;
     color: $our-orange;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -3px;
   }
-}
 
-span {
-  color: $our-white;
+  .username {
+    color: $our-black;
+  }
 }
 </style>

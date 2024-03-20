@@ -3,9 +3,6 @@
 import Button from '../components/utilities/Button.vue';
 import ButtonOutline from '../components/utilities/ButtonOutline.vue';
 
-
-// /IMPORTS
-
 export default {
     props: [],
     components: { Button, ButtonOutline },
@@ -29,9 +26,14 @@ export default {
 
             </div>
             <div class="login-form text-center d-flex flex-column">
-                <h5 class="text-uppercase">Log In</h5>
-                <input type="email" class="input mb-3" placeholder="Email">
-                <input type="password" class="input mb-3" placeholder="Password">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" class="input mb-3" placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" class="input mb-3" placeholder="Password">
+                </div>
                 <Button buttonText="Log In" buttonClass="text-uppercase mt-4" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
@@ -47,12 +49,16 @@ export default {
 @use '../assets/scss/partials/variables' as *;
 
 .wrapper {
-    background-color: $our-blue;
+    background-color: $our-white;
     width: 100vw;
     height: 100vh;
 
     .container {
-        color: $our-white;
+        color: $our-black;
+
+        i {
+            color: $our-black;
+        }
 
 
         .top-part {
@@ -60,11 +66,13 @@ export default {
             h1 {
                 margin-bottom: -30px;
                 font-size: 20px;
+
             }
 
             .giant-font {
                 font-size: 90px;
-                font-weight: 600;
+                font-weight: 700;
+                letter-spacing: -3px;
                 color: $our-orange;
             }
 
@@ -79,10 +87,22 @@ export default {
         }
 
         .login-form {
-            h5 {
-                letter-spacing: 2px;
-                font-size: 14px;
+
+            .input-group {
+
+                position: relative;
+
+                i {
+                    position: absolute;
+                    bottom: 52%;
+                    font-size: 12px;
+                    left: 10px;
+                    filter: opacity(0.6);
+                }
+
             }
+
+
         }
     }
 }
