@@ -45,7 +45,7 @@ footer {
 
     background-color: $our-orange;
     border-radius: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
 
     i {

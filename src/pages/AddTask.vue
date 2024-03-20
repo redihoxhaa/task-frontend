@@ -26,30 +26,33 @@ export default {
     <div class="wrapper">
         <Header />
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
-            <div class="add-card d-flex flex-column gap-5 p-5">
-                <h2>new .tASK</h2>
-                <div class="group">
+            <div class="add-card d-flex flex-column py-4 px-5">
+                <h2 class="pb-4">new .tASK</h2>
+                <div class="group pb-4">
                     <input type="text" class="inputV2">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Task name</label>
                 </div>
-                <div class="group">
+                <div class="group mt-3">
                     <textarea type="text" class="inputV2"></textarea>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label class>Description</label>
                 </div>
                 <div class="row">
-                    <div class="custom-group col-6">
-                        <div class="custom-label pb-2">Category</div>
-                        <select name="category_id" class="w-100">
-                            <option :value="category.id" v-for="category in categories">{{ category.name }}</option>
-                        </select>
-                    </div>
-                    <div class="custom-group col-6">
+
+                    <div class="custom-group col-12 mt-3">
                         <div class="custom-label pb-2">End date</div>
                         <VueDatePicker v-model="date" teleport-center></VueDatePicker>
+                    </div>
+
+                    <div class="custom-group col-12  mt-3">
+                        <div class="custom-label pb-2">Category</div>
+                        <select name="category_id" class="w-100 ps-2">
+                            <option :value="category.id" v-for="category in categories">{{ category.name }}</option>
+                            <option value="">ciao</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -86,17 +89,28 @@ export default {
                 font-size: 40px;
                 font-weight: 700;
                 letter-spacing: -3px;
+
             }
 
             .custom-label {
                 font-size: 14px;
                 font-weight: 600;
-                color: $our-orange;
+                color: $our-light-grey;
                 letter-spacing: -0.8px;
+
             }
 
             select {
                 height: 38px;
+                border-color: $our-border-grey;
+                border-radius: 3px;
+                transition: all 0.2s ease-in;
+                font-size: 12px;
+
+                &:hover {
+                    border-color: $our-border-hover-grey;
+                }
+
             }
         }
 

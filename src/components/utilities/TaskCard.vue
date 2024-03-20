@@ -6,27 +6,18 @@ export default {
     props: ['task'],
     methods: {
         // Funzione per trasformare la data
-        formatDueDate(dueDateString) {
-            const isoDueDateString = dueDateString.replace(" ", "T");
+        formatDueDateLeft(futureDateString) {
+            const targetDate = new Date(futureDateString);
+            const now = new Date().getTime();
+            const difference = targetDate - now;
 
-            const dueDate = DateTime.fromISO(isoDueDateString);
-            const currentDate = DateTime.now();
-
-            // Se l'orario attuale è dopo mezzanotte, considera un giorno intero
-            const adjustedCurrentDate = currentDate.hour < 12 ? currentDate : currentDate.plus({ days: 1 });
-
-            // Calcola la differenza tra le date aggiornate
-            const diff = dueDate.diff(adjustedCurrentDate);
-
-            // Estrai giorni e ore mancanti
-            const { days, hours } = diff.shiftTo('days', 'hours');
-
-            // Arrotonda il numero di ore verso l'alto
-            const roundedHours = Math.ceil(hours);
+            // Calcola giorni e ore
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
             // Formatta l'output
             const formattedDays = `${days} D`;
-            const formattedHours = `${roundedHours} H`;
+            const formattedHours = `${hours} H`;
             const formattedOutput = [formattedDays, formattedHours];
             return formattedOutput;
         }
@@ -43,10 +34,10 @@ export default {
         <div class="col-2">
             <div class="due-date d-flex flex-column justify-content-center align-items-center">
                 <span class="days">
-                    {{ formatDueDate(task.due_date)[0] }}
+                    {{ formatDueDateLeft(task.due_date)[0] }}
                 </span>
                 <span class="hours">
-                    {{ formatDueDate(task.due_date)[1] }}
+                    {{ formatDueDateLeft(task.due_date)[1] }}
                 </span>
                 <span>left</span>
             </div>

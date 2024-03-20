@@ -3,6 +3,7 @@ import Login from "./pages/Login.vue";
 import SignUp from "./pages/SignUp.vue";
 import Home from "./pages/Home.vue";
 import AddTask from "./pages/AddTask.vue";
+import ShowTask from "./pages/ShowTask.vue";
 import axios from 'axios';
 
 const router = createRouter({
@@ -28,6 +29,12 @@ const router = createRouter({
       path: "/add-task",
       name: "add-task",
       component: AddTask,
+      meta: { requiresAuth: true } // Specifica che questa rotta richiede autenticazione
+    },
+    {
+      path: "/show-task",
+      name: "show-task",
+      component: ShowTask,
       meta: { requiresAuth: true } // Specifica che questa rotta richiede autenticazione
     }
   ],

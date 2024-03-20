@@ -29,7 +29,7 @@
 }
 
 .inputV2 {
-    font-size: 16px;
+    font-size: 12px;
     padding: 10px 10px 10px 5px;
     display: block;
 
@@ -61,7 +61,7 @@ label {
 .inputV2:valid~label {
     top: -20px;
     font-size: 14px;
-    color: $our-orange;
+    color: $our-light-grey;
 }
 
 .bar {
