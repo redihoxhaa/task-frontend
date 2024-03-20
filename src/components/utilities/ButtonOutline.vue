@@ -16,12 +16,19 @@ export default {
             type: String,
             default: '',
         },
+        taskId: {
+            type: String,
+            default: null,
+        },
     },
+    methods: {
+    }
 };
 </script>
 
 <template>
-    <router-link class="button outline" :class="buttonClass" :to="{ name: buttonRedirect }">
+    <router-link class="button outline" :class="buttonClass"
+        :to="{ name: buttonRedirect, params: { id: this.taskId } }">
         <i v-if="buttonIcon" class="icon"> {{ buttonIcon }}</i>
         <span class="p-0 m-0">{{ buttonText }}</span>
 
@@ -35,6 +42,7 @@ export default {
 .button {
     padding: 10px 24px;
     border: none;
+    height: fit-content;
     border-radius: 10px;
     text-decoration: none;
     color: $our-white;

@@ -2,17 +2,45 @@
 // IMPORTS
 import Button from '../components/utilities/Button.vue';
 import ButtonOutline from '../components/utilities/ButtonOutline.vue';
+import axios from 'axios';
+import { store } from '../store';
 
 export default {
     props: [],
     components: { Button, ButtonOutline },
     data() {
         return {
-
+            store,
+            email: '',
+            password: ''
         }
     },
-    methods: {},
-    mounted() { },
+    methods: {
+        loginUser() {
+            axios.post(this.store.serverAPI + this.store.loginURI, {
+                email: this.email,
+                password: this.password
+            })
+                .then(response => {
+                    console.log(response.data); // Puoi fare qualcosa con la risposta qui
+                    this.store.accessToken = response.data.token;
+                    this.$router.push('/home');
+                })
+                .catch(error => {
+                    console.error(error);
+                    // Gestione degli errori
+                });
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Imposta lo scrolling fluido
+            });
+        }
+    },
+    mounted() {
+        this.scrollToTop()
+    },
 }
 </script>
 
@@ -28,13 +56,13 @@ export default {
             <div class="login-form text-center d-flex flex-column">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" class="input mb-3" placeholder="Email">
+                    <input type="email" class="input mb-3" placeholder="Email" v-model="email">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" class="input mb-3" placeholder="Password">
+                    <input type="password" class="input mb-3" placeholder="Password" v-model="password">
                 </div>
-                <Button buttonText="Log In" buttonClass="text-uppercase mt-4" />
+                <Button buttonText="Log In" buttonClass="text-uppercase mt-4" @click="loginUser" />
             </div>
             <div class="bottom-part mt-5 d-flex flex-column align-items-center">
                 <div class="mb-3">Don't have an account yet?</div>

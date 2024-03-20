@@ -17,9 +17,11 @@
     "bootstrap": "^5.3.2",
     "luxon": "^3.4.4",
     "vue": "^3.3.11",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuetify": "^3.5.10"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@vitejs/plugin-vue": "^4.5.2",
     "sass": "^1.69.5",
     "vite": "^5.0.8"

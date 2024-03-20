@@ -1,6 +1,6 @@
 <script>
 // IMPORTS
-
+import { store } from '../store';
 // /IMPORTS
 
 export default {
@@ -8,7 +8,7 @@ export default {
   components: {},
   data() {
     return {
-      user: 'User'
+      store,
     }
   },
   methods: {},
@@ -18,8 +18,10 @@ export default {
 
 <template>
   <header class="d-flex justify-content-between align-items-center px-4">
-    <div class="logo">.tASK</div>
-    <div class="username">{{ user }}</div>
+    <div class="container d-flex justify-content-between align-items-center">
+      <router-link class="logo" :to="{ name: 'home' }">.tASK</router-link>
+      <div class="username">{{ this.store.userInfo.name }}</div>
+    </div>
   </header>
 </template>
 
@@ -43,6 +45,7 @@ header {
     color: $our-orange;
     font-weight: 700;
     letter-spacing: -3px;
+    text-decoration: none;
   }
 
   .username {

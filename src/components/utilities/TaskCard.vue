@@ -26,13 +26,17 @@ export default {
 </script>
 
 <template>
-    <div class="task row" :style="{ backgroundColor: task.category.bg_color_hex, color: task.category.text_color_hex }">
+    <div class="task row" v-if="task.category_id"
+        :style="{ backgroundColor: task.category.bg_color_hex, color: task.category.text_color_hex }">
+        <i class="fa-solid fa-check" v-if="task.status == 1"></i>
         <div class="col-10 d-flex flex-column justify-content-center">
             <div class="title">{{ task.title }}</div>
             <span class="description">{{ task.description }}</span>
         </div>
-        <div class="col-2">
-            <div class="due-date d-flex flex-column justify-content-center align-items-center">
+        <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+            <div class="due-date text-uppercase d-flex flex-column justify-content-center align-items-center"
+                v-if="task.status == 1"><span class="done">Done</span></div>
+            <div class="due-date d-flex flex-column justify-content-center align-items-center" v-else>
                 <span class="days">
                     {{ formatDueDateLeft(task.due_date)[0] }}
                 </span>
@@ -41,6 +45,28 @@ export default {
                 </span>
                 <span>left</span>
             </div>
+        </div>
+    </div>
+
+    <div class="task row" v-else>
+        <i class="fa-solid fa-check" v-if="task.status == 1"></i>
+        <div class="col-10 d-flex flex-column justify-content-center">
+            <div class="title">{{ task.title }}</div>
+            <span class="description">{{ task.description }}</span>
+        </div>
+        <div class="col-2">
+            <div class="due-date text-uppercase d-flex flex-column justify-content-center align-items-center"
+                v-if="task.status == 1"><span class="done">Done</span></div>
+            <div class="due-date d-flex flex-column justify-content-center align-items-center" v-else>
+                <span class="days">
+                    {{ formatDueDateLeft(task.due_date)[0] }}
+                </span>
+                <span class="hours">
+                    {{ formatDueDateLeft(task.due_date)[1] }}
+                </span>
+                <span>left</span>
+            </div>
+
         </div>
     </div>
 </template>
@@ -55,6 +81,17 @@ export default {
     box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
     position: relative;
     overflow: hidden;
+    color: $our-black;
+
+    .fa-check {
+        position: absolute;
+        font-size: 160px;
+        top: -39px;
+        left: -30px;
+        opacity: 0.1;
+        z-index: 2;
+
+    }
 
     .title {
         font-weight: 500;
@@ -65,6 +102,10 @@ export default {
         filter: opacity(0.5);
         font-size: 12px;
         letter-spacing: -0.3px;
+    }
+
+    .done {
+        color: inherit;
     }
 
     .due-date {

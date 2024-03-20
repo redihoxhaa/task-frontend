@@ -2,37 +2,38 @@
 // IMPORTS
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
+import Button from '../components/utilities/Button.vue';
 import { DateTime } from "luxon";
-
+import axios from 'axios';
+import { store } from '../store';
 
 export default {
     props: [],
-    components: { Header, Footer },
+    components: { Header, Footer, Button },
     data() {
         return {
-            task: {
-                "id": 2,
-                "user_id": 1,
-                "category_id": 3,
-                "title": "Pagare la palestra di Karate fino a domani",
-                "description": "Completare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progettoCompletare la relazione di progetto",
-                "due_date": "Thu Mar 21 2024 02:01:00 GMT+0100 (Ora standard dell\’Europa centrale)",
-                "status": 1,
-                "created_at": "2024-03-19T16:38:43.000000Z",
-                "updated_at": "2024-03-19T16:38:43.000000Z",
-                "category": {
-                    "id": 3,
-                    "user_id": 1,
-                    "name": "nuova categoria",
-                    "bg_color_hex": "#f2f2f2",
-                    "text_color_hex": "#222222",
-                    "created_at": "2024-03-19T20:30:17.000000Z",
-                    "updated_at": "2024-03-19T20:30:17.000000Z"
-                }
-            },
+            store,
+            task: null,
         }
     },
     methods: {
+
+        getTask() {
+            axios.get(store.serverAPI + store.tasksURI + '/' + this.$route.params.id, {
+                headers: {
+                    'Authorization': `Bearer ${store.accessToken}`
+                }
+            })
+                .then(response => {
+                    console.log(response.data)
+                    this.task = response.data;
+                })
+                .catch(error => {
+                    // Gestisci gli errori durante la richiesta
+                    console.error('Error while fetching tasks:', error);
+                    throw error; // Rilancia l'errore per gestirlo nel chiamante
+                });
+        },
 
         formattedCreateDate(dateString) {
 
@@ -53,11 +54,20 @@ export default {
             const formattedDate = DateTime.fromJSDate(date).toFormat("LLL dd yyyy, HH:mm:ss a");
             return formattedDate; // Output: Mar 21 2024, 02:01:00 AM
 
+        },
 
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Imposta lo scrolling fluido
+            });
         }
 
     },
-    mounted() { },
+    mounted() {
+        this.scrollToTop();
+        this.getTask();
+    }
 }
 </script>
 
@@ -68,15 +78,20 @@ export default {
 
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
             <div class="padder">
-                <div class="task-card d-flex flex-column py-4 px-4">
+                <div class="task-card d-flex flex-column py-4 px-4" v-if="task">
                     <h2 class="pb-4">your .tASK</h2>
                     <div class="info d-flex flex-column">
                         <div class="create-date text-end pb-4">created: {{ formattedCreateDate(task.created_at) }}</div>
                         <h4 class="task-title pb-2">{{ task.title }}</h4>
-                        <p class="inner-card task-description p-3 mb-5">{{ task.description }}</p>
-                        <div class="category pb-4"><span class="label">Category:</span> {{ task.category.name }}</div>
-                        <div class="due-date text-end">due date: {{ formattedDueDate(task.due_date) }}</div>
-
+                        <p class="task-description p-3 mb-4">{{ task.description }}</p>
+                        <div class="category pb-4" v-if="task.category"><span class="label">Category:</span> {{
+                    task.category.name }}</div>
+                        <div class="due-date d-flex justify-content-end">due date: {{ formattedDueDate(task.due_date) }}
+                        </div>
+                        <div class="div d-flex justify-content-end">
+                            <Button buttonText="Edit" buttonRedirect="edit-task" class="edit-btn mt-5"
+                                :taskId="task.id" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,6 +124,7 @@ export default {
             .task-card {
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
+                background-color: $our-whiter;
 
 
                 h2 {
@@ -134,12 +150,17 @@ export default {
                     }
 
                     .task-description {
-                        font-size: 12px;
+                        font-size: 14px;
+                        border-bottom: 1px solid $our-border-grey;
+                        color: $our-grey;
+                    }
+
+                    .edit-btn {
+                        width: fit-content;
                     }
 
                     .category {
                         font-size: 14px;
-
 
                         .label {
                             font-size: 14px;
