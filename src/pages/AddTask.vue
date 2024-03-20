@@ -25,35 +25,38 @@ export default {
 
     <div class="wrapper">
         <Header />
+
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
-            <div class="add-card d-flex flex-column py-4 px-4">
-                <h2 class="pb-4">new .tASK</h2>
-                <div class="group pb-4">
-                    <input type="text" class="inputV2">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Task name</label>
-                </div>
-                <div class="group mt-3">
-                    <textarea type="text" class="inputV2"></textarea>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label class>Description</label>
-                </div>
-
-                <div class="row">
-
-                    <div class="custom-group col-12 mt-3">
-                        <div class="custom-label pb-2">End date</div>
-                        <VueDatePicker v-model="date" teleport-center></VueDatePicker>
+            <div class="padder">
+                <div class="add-card d-flex flex-column py-4 px-4">
+                    <h2 class="pb-4">new .tASK</h2>
+                    <div class="group pb-4">
+                        <input type="text" class="inputV2">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Task name</label>
+                    </div>
+                    <div class="group mt-3">
+                        <textarea type="text" class="inputV2"></textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class>Description</label>
                     </div>
 
-                    <div class="custom-group col-12  mt-3">
-                        <div class="custom-label pb-2">Category</div>
-                        <select name="category_id" class="w-100 ps-2">
-                            <option :value="category.id" v-for="category in categories">{{ category.name }}</option>
-                            <option value="">ciao</option>
-                        </select>
+                    <div class="row">
+
+                        <div class="custom-group col-12 mt-3">
+                            <div class="custom-label pb-2">End date</div>
+                            <VueDatePicker v-model="date" teleport-center></VueDatePicker>
+                        </div>
+
+                        <div class="custom-group col-12  mt-3">
+                            <div class="custom-label pb-2">Category</div>
+                            <select name="category_id" class="w-100 ps-2">
+                                <option :value="category.id" v-for="category in categories">{{ category.name }}</option>
+                                <option value="">ciao</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,8 +76,7 @@ export default {
 
 .wrapper {
     background-color: $our-white;
-    height: 100vh;
-    overflow-y: auto;
+
 
     .container {
         color: $our-white;

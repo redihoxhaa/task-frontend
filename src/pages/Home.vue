@@ -164,12 +164,14 @@ export default {
 
     <div class="wrapper">
         <Header />
-        <div class="container px-4 py-4">
-            <ul class="tasks-list d-flex flex-column gap-2">
-                <li v-for="task in tasks">
-                    <TaskCard :task="task" />
-                </li>
-            </ul>
+        <div class="padder">
+            <div class="container px-4 py-4">
+                <ul class="tasks-list d-flex flex-column gap-2">
+                    <li v-for="task in tasks">
+                        <TaskCard :task="task" />
+                    </li>
+                </ul>
+            </div>
         </div>
         <Footer />
     </div>
@@ -193,11 +195,6 @@ export default {
         height: calc(100% - 120px);
 
 
-        .tasks-list {
-            padding-bottom: 120px;
-
-
-        }
     }
 }
 </style>
