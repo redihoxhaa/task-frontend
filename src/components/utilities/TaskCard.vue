@@ -12,11 +12,13 @@ export default {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
-            // Calcola giorni e ore
+            if (difference <= 0) {
+                return ["", ""];
+            }
+
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-            // Formatta l'output
             const formattedDays = `${days} D`;
             const formattedHours = `${hours} H`;
             const formattedOutput = [formattedDays, formattedHours];
@@ -38,13 +40,19 @@ export default {
             <div class="due-date text-uppercase d-flex flex-column justify-content-center align-items-center"
                 v-if="task.status == 1"><span class="done">Done</span></div>
             <div class="due-date d-flex flex-column justify-content-center align-items-center" v-else>
-                <span class="days">
-                    {{ formatDueDateLeft(task.due_date)[0] }}
-                </span>
-                <span class="hours">
-                    {{ formatDueDateLeft(task.due_date)[1] }}
-                </span>
-                <span>left</span>
+                <template v-if="new Date(task.due_date) > new Date()">
+                    <span class="days">
+                        {{ formatDueDateLeft(task.due_date)[0] }}
+                    </span>
+                    <span class="hours">
+                        {{ formatDueDateLeft(task.due_date)[1] }}
+                    </span>
+                    <span>left</span>
+                </template>
+                <template v-else>
+                    <span v-if="new Date(task.due_date) < new Date()" class="elapsed">Elapsed</span>
+                    <span v-else class="completed">Completed</span>
+                </template>
             </div>
         </div>
     </div>
@@ -59,13 +67,19 @@ export default {
             <div class="due-date text-uppercase d-flex flex-column justify-content-center align-items-center"
                 v-if="task.status == 1"><span class="done">Done</span></div>
             <div class="due-date d-flex flex-column justify-content-center align-items-center" v-else>
-                <span class="days">
-                    {{ formatDueDateLeft(task.due_date)[0] }}
-                </span>
-                <span class="hours">
-                    {{ formatDueDateLeft(task.due_date)[1] }}
-                </span>
-                <span>left</span>
+                <template v-if="new Date(task.due_date) > new Date()">
+                    <span class="days">
+                        {{ formatDueDateLeft(task.due_date)[0] }}
+                    </span>
+                    <span class="hours">
+                        {{ formatDueDateLeft(task.due_date)[1] }}
+                    </span>
+                    <span>left</span>
+                </template>
+                <template v-else>
+                    <span v-if="new Date(task.due_date) < new Date()" class="elapsed">Elapsed</span>
+                    <span v-else class="completed">Completed</span>
+                </template>
             </div>
 
         </div>

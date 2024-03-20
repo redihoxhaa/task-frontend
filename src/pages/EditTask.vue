@@ -98,9 +98,9 @@ export default {
                 isValid = false;
             }
 
-            if (!this.dueDate || new Date(this.dueDate) < new Date()) {
-                isValid = false;
-            }
+            // if (!this.dueDate || new Date(this.dueDate) < new Date()) {
+            //     isValid = false;
+            // }
 
             return isValid;
         },
@@ -202,8 +202,8 @@ export default {
                         <div class="custom-group col-12 mt-3">
                             <div class="custom-label pb-2">Due date *</div>
                             <VueDatePicker v-model="dueDate" teleport-center></VueDatePicker>
-                            <span v-if="formSubmitted && (!dueDate || new Date(dueDate) < new Date())" class="error">Due
-                                date must be in the future</span>
+                            <!-- <span v-if="formSubmitted && (!dueDate || new Date(dueDate) < new Date())" class="error">Due
+                                date must be in the future</span> -->
                         </div>
 
                         <div class="custom-group col-12  mt-3" v-if="categories && categories.length">
