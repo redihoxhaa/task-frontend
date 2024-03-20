@@ -29,7 +29,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data);
+
                     this.tasks = response.data;
                 })
                 .catch(error => {
@@ -53,7 +53,9 @@ export default {
         <div class="padder">
             <div class="container px-4 py-4">
                 <ul class="tasks-list row g-4">
-                    <li v-for="task in  tasks" :key="task.id" class="col-12 col-md-6 px-4">
+                    <li v-if="tasks && tasks.length === 0" class="col-12 no-tasks text-center">No tasks available,
+                        create your first one!</li>
+                    <li v-for="task in  tasks" :key="task.id" class="col-12 col-md-6 px-4" v-else>
                         <router-link :to="{ name: 'show-task', params: { id: task.id } }">
                             <TaskCard :task="task" />
                         </router-link>
@@ -80,6 +82,10 @@ export default {
         color: $our-white;
         margin-top: 60px;
         height: calc(100% - 120px);
+
+        .no-tasks {
+            color: $our-black;
+        }
 
     }
 }

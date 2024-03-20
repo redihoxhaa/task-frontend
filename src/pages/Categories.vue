@@ -26,7 +26,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data);
+
                     this.categories = response.data;
                 })
                 .catch(error => {
@@ -61,7 +61,10 @@ export default {
                     <ButtonOutline buttonText="Add Category" buttonRedirect="add-category" />
                 </div>
                 <ul class="categories row g-4 pt-3">
-                    <li v-for=" category in categories" class="col-12 col-md-6 px-4">
+                    <li v-if="categories && categories.length === 0" class="col-12 no-categories text-center">No
+                        categories available,
+                        create your first one!</li>
+                    <li v-for=" category in categories" class="col-12 col-md-6 px-4" v-else>
                         <div class="category"
                             :style="{ backgroundColor: category.bg_color_hex, color: category.text_color_hex }">{{
                         category.name }}
@@ -103,6 +106,10 @@ export default {
                 box-shadow: 0 0 10px rgba($color: black, $alpha: 0.2);
                 border-radius: 8px;
             }
+        }
+
+        .no-categories {
+            color: $our-black;
         }
 
     }

@@ -47,7 +47,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data)
+
                     this.task = response.data;
 
                     this.title = this.task.title
@@ -76,7 +76,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data)
+
                     this.categories = response.data;
                 })
                 .catch(error => {
@@ -131,7 +131,7 @@ export default {
             })
                 .then(response => {
 
-                    console.log('Edited task:', response.data);
+
                     this.$router.push('/home');
 
                 })
@@ -152,7 +152,7 @@ export default {
             })
                 .then(response => {
 
-                    console.log('Deleted task:', response.data);
+
                     this.$router.push('/home');
 
                 })
@@ -179,7 +179,7 @@ export default {
 
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
             <div class="padder">
-                <div class="edit-card d-flex flex-column py-4 px-4" v-if="task && categories">
+                <div class="edit-card d-flex flex-column py-4 px-4" v-if="task">
                     <h2 class="pb-4">edit .tASK</h2>
                     <div class="group pb-4 mt-4">
                         <input type="text" class="inputV2" v-model="title" required>
@@ -206,7 +206,7 @@ export default {
                                 date must be in the future</span>
                         </div>
 
-                        <div class="custom-group col-12  mt-3">
+                        <div class="custom-group col-12  mt-3" v-if="categories && categories.length">
                             <div class="custom-label pb-2">Category</div>
                             <select name="category_id" class="w-100 ps-2" v-model="categoryId">
                                 <option :value="category.id" v-for="category in categories"

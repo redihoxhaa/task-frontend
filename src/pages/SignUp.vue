@@ -24,7 +24,7 @@ export default {
                 password: this.password
             })
                 .then(response => {
-                    console.log(response.data); // Puoi fare qualcosa con la risposta qui
+
                     this.store.accessToken = response.data.token;
                     this.$router.push('/home');
                 })

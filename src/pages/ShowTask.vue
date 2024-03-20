@@ -25,7 +25,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data)
+
                     this.task = response.data;
                 })
                 .catch(error => {
@@ -43,8 +43,6 @@ export default {
         },
 
         formattedDueDate(dateString) {
-
-            console.log(dateString)
 
             const formattedDateString = dateString.replace(" GMT", "").split(" (")[0];
 

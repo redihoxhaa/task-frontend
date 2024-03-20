@@ -38,7 +38,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data);
+
                     this.categories = response.data;
                 })
                 .catch(error => {
@@ -88,7 +88,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log('New task created:', response.data);
+
                     this.$router.push('/home');
                 })
                 .catch(error => {
@@ -111,7 +111,7 @@ export default {
 
         <div class="container d-flex align-items-center justify-content-center px-4 py-4">
             <div class="padder">
-                <div class="add-card d-flex flex-column py-4 px-4" v-if="categories">
+                <div class="add-card d-flex flex-column py-4 px-4">
                     <h2 class="pb-4">New Task</h2>
                     <div class="group pb-4 mt-4">
                         <input type="text" class="inputV2" v-model="title">
@@ -136,9 +136,9 @@ export default {
                                 date must be in the future</span>
                         </div>
 
-                        <div class="custom-group col-12  mt-3">
+                        <div class="custom-group col-12  mt-3" v-if="categories && categories.length">
                             <div class="custom-label pb-2">Category</div>
-                            <select name="category_id" class="w-100 ps-2" v-model="categoryId">
+                            <select name="category_id" class="w-100 ps-2" v-if="categories" v-model="categoryId">
                                 <option :value="category.id" v-for="category in categories">{{ category.name }}</option>
                             </select>
                         </div>

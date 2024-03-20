@@ -57,8 +57,6 @@ export default {
                 text_color_hex: this.text_color_hex
             };
 
-            console.log(newCategory);
-
             axios.post(store.serverAPI + store.categoriesURI, newCategory, {
                 headers: {
                     'Authorization': `Bearer ${store.accessToken}`
@@ -66,7 +64,6 @@ export default {
             })
                 .then(response => {
 
-                    console.log('New category created:', response.data);
                     this.$router.push('/categories');
 
                 })
