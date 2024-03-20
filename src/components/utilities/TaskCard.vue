@@ -50,7 +50,7 @@ export default {
                     <span>left</span>
                 </template>
                 <template v-else>
-                    <span v-if="new Date(task.due_date) < new Date()" class="elapsed">Elapsed</span>
+                    <span v-if="new Date(task.due_date) < new Date()" class="expired">Expired</span>
                     <span v-else class="completed">Completed</span>
                 </template>
             </div>
@@ -77,7 +77,7 @@ export default {
                     <span>left</span>
                 </template>
                 <template v-else>
-                    <span v-if="new Date(task.due_date) < new Date()" class="elapsed">Elapsed</span>
+                    <span v-if="new Date(task.due_date) < new Date()" class="expired">Expired</span>
                     <span v-else class="completed">Completed</span>
                 </template>
             </div>
