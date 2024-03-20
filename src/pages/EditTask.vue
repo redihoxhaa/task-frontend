@@ -228,8 +228,30 @@ export default {
 
 
                     <div class="buttons d-flex justify-content-between align-items-center mt-5 mb-2">
-                        <ButtonOutline buttonText="Delete" class="edit-btn" @click="deleteTask" />
+                        <ButtonOutline buttonText="Delete" class="edit-btn" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" />
                         <Button buttonText="Save" class="edit-btn " @click="submitForm" />
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body d-flex justify-content-center">
+                                    You are about to delete {{ task.title }}
+                                </div>
+                                <div class="modal-footer">
+                                    <ButtonOutline buttonText="Back" data-bs-dismiss="modal" />
+                                    <Button buttonText="Delete" class="edit-btn" data-bs-dismiss="modal"
+                                        @click="deleteTask" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -329,6 +351,10 @@ export default {
                 color: red;
                 font-size: 12px;
                 margin-top: 5px;
+            }
+
+            .modal {
+                color: $our-black;
             }
         }
 

@@ -1,10 +1,1 @@
-# ESERCIZIO
-
-#### CONSEGNA DELL'ESERCIZIO 
-
-```
-
-```
-
-#### SVOLGIMENTO
-
+# TASK FRONTEND
